@@ -1,0 +1,28 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <title>Techport Recommendations Data via LocalStorage</title>
+    </head>
+    <body>
+        <a href='product.html' data-recommendation='{ "id": "13417823467182346823", "position": "3", "service": "ydf" }'>Product Page</a>
+
+        <script type="text/javascript">
+            document.body.addEventListener('click', function(e) {
+                var recommendation = e.target.getAttribute('data-recommendation'),
+                    recommendationsClicks
+
+                if (recommendation) {
+                    // Get common object for clicks
+                    recommendationsClicks = JSON.parse(localStorage.getItem('recommendationsClicks')) || {};
+
+                    // Save fact that we followed link with recommendation
+                    recommendationsClicks[e.target.href] = recommendation;
+
+                    // Save it
+                    localStorage.setItem('recommendationsClicks', JSON.stringify(recommendationsClicks));
+                }
+            })
+        </script>
+    </body>
+</html>

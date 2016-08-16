@@ -1,0 +1,38 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <title>Techport Product</title>
+
+        <script type="text/javascript">
+            // get recommendation from localStorage
+            var recommendationsClicks = JSON.parse(localStorage.getItem('recommendationsClicks')) || {},
+                recommendation = recommendationsClicks[location.href];
+
+            if (recommendation) {
+                recommendation = JSON.parse(recommendation);
+
+                // delete the fact that we followed recommendation
+                delete recommendationsClicks[location.href];
+                localStorage.setItem('recommendationsClicks', JSON.stringify(recommendationsClicks));
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Product Page</h1>
+
+        <script type="text/javascript">
+            var dataLayer = {
+                ecommerce: {
+                    detail: {
+                        actionField: {
+                            from_recommendations: recommendation
+                        }
+                    }
+                }
+            };
+
+            console.log(dataLayer);
+        </script>
+    </body>
+</html>

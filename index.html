@@ -9,18 +9,11 @@
 
         <script type="text/javascript">
             document.body.addEventListener('click', function(e) {
-                var recommendation = e.target.getAttribute('data-recommendation'),
-                    recommendationsClicks
+                var recommendation = e.target.getAttribute('data-recommendation');
 
                 if (recommendation) {
-                    // Get common object for clicks
-                    recommendationsClicks = JSON.parse(localStorage.getItem('recommendationsClicks')) || {};
-
-                    // Save fact that we followed link with recommendation
-                    recommendationsClicks[e.target.href] = recommendation;
-
                     // Save it
-                    localStorage.setItem('recommendationsClicks', JSON.stringify(recommendationsClicks));
+                    localStorage.setItem(e.target.href, recommendation);
                 }
             })
         </script>

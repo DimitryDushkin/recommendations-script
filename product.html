@@ -6,15 +6,11 @@
 
         <script type="text/javascript">
             // get recommendation from localStorage
-            var recommendationsClicks = JSON.parse(localStorage.getItem('recommendationsClicks')) || {},
-                recommendation = recommendationsClicks[location.href];
+            var recommendation = localStorage.getItem(location.href);
 
             if (recommendation) {
-                recommendation = JSON.parse(recommendation);
-
                 // delete the fact that we followed recommendation
-                delete recommendationsClicks[location.href];
-                localStorage.setItem('recommendationsClicks', JSON.stringify(recommendationsClicks));
+                localStorage.removeItem(location.href);
             }
         </script>
     </head>
